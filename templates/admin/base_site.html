@@ -4,13 +4,17 @@
 {% block title %}{{ title }} | {% trans 'Plog site admin' %}{% endblock %}
 
 {% block branding %}
+
+{% load staticfiles %}
+<!--
+<link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.css" %}"  />
+-->
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <script type="text/javascript">
 tinymce.init({
     selector: "textarea"
  });
 </script>
-
 <h1 id="site-name">{% trans 'Plog administration' %}</h1>
 {% endblock %}
 
