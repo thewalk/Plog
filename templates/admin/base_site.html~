@@ -9,13 +9,8 @@
 <!--
 <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.css" %}"  />
 -->
-<script src="{% static "jquery/js/jquery-1.11.1.js" %}"></script>
-<script src="{% static "jquery/js/bootstrap-wysiwyg.js" %}"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-   $('textarea').wysiwyg();
-});
-</script>
+<script src="{% static "tinymce/tinymce.min.js" %}"></script>
+
 <h1 id="site-name">{% trans 'Plog administration' %}</h1>
 {% endblock %}
 
