@@ -5,7 +5,7 @@ from blog.models import Article, Tag, Comment, Category
 
 class ArticleAdmin(admin.ModelAdmin):
     """docstring for BlogAdmin"""
-    list_display = ('title','category','content','publish_time','update_time','hit_num',)
+    list_display = ('title','description','category','content','publish_time','update_time','hit_num',)
     list_filter = ('publish_time',)
     ordering = ('-publish_time',)
     filter_horizontal = ('tags',)

@@ -1,0 +1,13 @@
+{% extends "sblog/base.html" %}
+
+{% block title %} blog list {% endblock %}
+
+
+{% block content %}
+<div class="content">
+    {% for article in articles %}
+        <h3>{{ article.title }}</h3>
+        <div>{{ article.content}} </div> 
+    {% endfor %}     
+</div>    
+{% endblock %}

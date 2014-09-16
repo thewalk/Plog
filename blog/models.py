@@ -21,6 +21,7 @@ class Category(models.Model):
 class Article(models.Model):
     """Article"""
     title = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
     tags = models.ManyToManyField(Tag, blank=True)
     category = models.ForeignKey(Category)
     content = models.TextField()
