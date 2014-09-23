@@ -1,27 +1,36 @@
 {% extends "blog/base.html" %}
-{% block top %}
-	<div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
-        </nav>
-      </div>
-    </div>
-{% endblock %}
-    <div class="container">
-		<div class="blog-header">
-			<h1 class="blog-title">{{ detail.title }}some</h1>
-			<p class="lead blog-description">{{ detail.description }}</p>
+{% block container %}
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-8">
+		{% autoescape off %}
+		<div class="palette palette-green-sea">
+			<div class="blog-header">
+				<h1 class="blog-title">{{ detail.title }}some</h1>
+				<hr/>
+				<p class="lead blog-description">{{ detail.description }}</p>
+				<hr/>
+			</div>
+			<div>
+				<p>{{ detail.content }}</p>
+			</div>
 		</div>
-		<div>
-			<p>{{ detail.content }}</p>
-		</div>
+		{% endautoescape %}	
 	</div>
-{% block content %}
+	<div class="col-md-3">
+		<div style="top: 0px; left: 0px; display: block;" class="tooltip fade bottom in">
+			<div class="tooltip-arrow"></div>
+			<div class="tooltip-inner">Tooltip under the text.</div>
+		</div>
+		<ul class="list-group">
+		  <li class="list-group-item">Cras justo odio</li>
+		  <li class="list-group-item">Dapibus ac facilisis in</li>
+		  <li class="list-group-item">Morbi leo risus</li>
+		  <li class="list-group-item">Porta ac consectetur ac</li>
+		  <li class="list-group-item">Vestibulum at eros</li>
+		</ul>
+	</div>
+</div>
 {% endblock %}
 {% block footer %}
 {% endblock %}
