@@ -1,10 +1,9 @@
 from django.db import models
 
-# Create your models here.
-
 class Tag(models.Model):
     """Tag, each article at least has a tag as an abstraction"""
     tag_name = models.CharField(max_length=20, blank=True)
+    category_type = models.ForeignKey("CategoryType")
     create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
@@ -13,10 +12,19 @@ class Tag(models.Model):
 class Category(models.Model):
     """Category, each article is belong to some category"""
     category_name = models.CharField(max_length=20)
+    category_type = models.ForeignKey("CategoryType")
     create_time = models.DateTimeField(auto_now_add=True)
     
     def __unicode__(self):
         return u'%s' %(self.category_name)
+
+class CategoryType(models.Model):
+    """Category's subclass"""
+    categoryType_name = models.CharField(max_length=20)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return u'%s' %(self.categoryType_name)
 
 class Article(models.Model):
     """Article"""
@@ -27,11 +35,11 @@ class Article(models.Model):
     content = models.TextField()
     publish_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
-    hit_num = models.IntegerField()
+    hit_num = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return u'%s %s' % (self.title, self.publish_time)
-        
+        return u'%s %s ' % (self.title, self.publish_time)
+
 class Comment(models.Model):
     """Comment, comment of article"""
     critic_name = models.CharField(max_length=20)

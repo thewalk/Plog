@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    {{detail.title}}--吊儿郎当小阿衰
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        {% autoescape off %}
+        <div class="palette palette-green-sea">
+            <div>
+                <h4>{{ detail.title }}</h4>
+                <hr/>
+                <p><span class="glyphicon glyphicon-search"></span><font>{{ detail.description }}</font></p>
+                <hr/>
+            </div>
+            <div>
+                <p>{{ detail.content }}</p>
+            </div>
+            <div>
+                <hr/>
+                <p><span class="glyphicon glyphicon-folder-open"></span>&nbsp&nbsp{{detail.category}}</p>
+                <p>
+                    <span class="glyphicon glyphicon-tags"></span>&nbsp&nbsp
+                    {% for tag in detail.tags.all %}
+                    <span class="label label-primary">{{ tag.tag_name }}</span>
+                    {% endfor %}
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span>&nbsp&nbsp{{detail.publish_time}}</p>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    {% if previous %}
+                    <div class="col-md-4 btn btn-active btn-inverse">
+                        <font size="2"><span style="float:left"><<</span>{{ previous.title }}</font>
+                    </div>
+                    {% else %}
+                    <div class="col-md-4 btn disabled">
+                        <font size="2" color="black"><span style="float:left"><<</span>前面木有了</font>
+                    </div>
+                    {% endif %}
+                    <div class="col-md-2"></div>
+                    {% if next %}
+                    <div class="col-md-4 btn btn-active btn-inverse">
+                        <font size="2"><span style="float:right">>></span>{{ next.title }}</font></div>
+                    {% else %}
+                    <div class="col-md-4 btn disabled">
+                        <font size="2" color="black"><span style="float:right">>></span>后面木有了</font></div>
+                    {% endif %}
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+        {% endautoescape %}	
+    </div>
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="/blog/{{ category_type }}/list/" class="btn btn-active btn-inverse" style="width:100%">ALL</a>
+            {% for category in category_list %}   
+            <a href="/blog/{{ category_type }}/list/category={{ category.category_name }}" class="list-group-item  palette palette-silver">{{ category.category_name }}</a>
+            {% endfor%}
+        </div>
+        <hr/>
+        <div>
+            {% for tag in tag_list %}
+            <span class="label label-primary"><a href="/blog/{{ category_type }}/list/tag={{ tag.tag_name }}">{{ tag.tag_name }}</a></span>
+            {% endfor %}
+        </div>
+        <hr/>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    {{ category_type }}--吊儿郎当小阿衰
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        {% autoescape off %}
+        <div class="palette palette-green-sea">
+            {% for article in articles %}
+            <div class="bs-callout palette palette-turquoise ">
+                <p class="blog-title">
+                    <h4><a href="/blog/{{ category_type }}/detail/article_id={{ article.id }}">{{ article.title }}</a></h4>
+                </p>
+                <p>
+                    <span  class="glyphicon glyphicon-time"></span>&nbsp{{ article.update_time }}
+                    <span  class="glyphicon glyphicon-folder-open"></span>&nbsp{{ article.category }}
+                </p>
+                <p>{{ article.description }}</p>
+            </div>
+            {% endfor %}
+
+            <div class="pagination pagination-inverse">
+                {% if articles.has_previous %}
+                <a href="?page={{ articles.previous_page_number }}" class="btn btn-inverse previous">前一页</a>
+                {% else %}
+                <a class="btn btn-inverse disabled previous">前一页</a>
+                {% endif %}
+                <script language="javascript" type="text/javascript">
+                    document.write("<ul>");
+                    var num_pages = {{ articles.paginator.num_pages }};
+                    var number = {{ articles.number }};
+                    var iter = {{ articles.number }} - 3;
+                    var count = 0;
+                    while(iter <= 0) iter++;
+                    
+                    for( ; count < num_pages && count<7 ; count++ )
+                    {
+                       document.write("<li><a href='?page=" + iter + "'>" + iter + "</a></li>");
+                       iter++;
+                    }
+                    document.write("</ul>");
+                </script> 
+                {% if articles.has_next %}
+                <a href="?page={{ articles.next_page_number }}" class="btn btn-inverse next">后一页</a>
+                {% else %}
+                <a" class="btn btn-inverse disabled next">后一页</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endautoescape %}
+    </div>
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="/blog/{{ category_type }}/list/" class="btn btn-active btn-inverse" style="width:100%">ALL</a>
+            {% for category in category_list %}   
+            <a href="/blog/{{ category_type }}/list/category={{ category.category_name }}" class="list-group-item  palette palette-silver">{{ category.category_name }}</a>
+            {% endfor%}
+        </div>
+        <hr/>
+        <div>
+            {% for tag in tag_list %}
+            <span class="label label-primary"><a href="/blog/{{ category_type }}/list/tag={{ tag.tag_name }}">{{ tag.tag_name }}</a></span>
+            {% endfor %}
+        </div>
+        <hr/>
+    </div>
+</div>
+{% endblock %}
