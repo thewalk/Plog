@@ -2,17 +2,31 @@ from django.shortcuts import render
 from blog.models import Article,Category,Tag
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 # Create your views here.
-
-def detail(request, article_id, category_type):
+def home(request):
+    return render(request, 'blog/home.html')
+def article_detail(request, article_id, category_type, category_name, tag_name):
     detail = Article.objects.get(pk=article_id)
-    article_list = Article.objects.filter(category__category_type__categoryType_name__exact = category_type).order_by('publish_time')
+    if category_name:
+        article_list = Article.objects.filter(category__category_name = category_name).order_by('publish_time')
+    elif tag_name:
+        tag = Tag.objects.get(tag_name__exact = tag_name)
+        article_list = tag.article_set.all().filter(category__category_type__categoryType_name__exact = category_type).order_by('publish_time')
+    else:
+        article_list = Article.objects.filter(category__category_type__categoryType_name__exact = category_type).order_by('publish_time')
     for current in article_list:
         if current.publish_time > detail.publish_time:
             break
     next = current
     if next == detail:
         next = ''
-    article_list = Article.objects.order_by('-publish_time')
+
+    if category_name:
+        article_list = Article.objects.filter(category__category_name = category_name).order_by('-publish_time')
+    elif tag_name:
+        tag = Tag.objects.get(tag_name__exact = tag_name)
+        article_list = tag.article_set.all().filter(category__category_type__categoryType_name__exact = category_type).order_by('-publish_time')
+    else:
+        article_list = Article.objects.filter(category__category_type__categoryType_name__exact = category_type).order_by('-publish_time')
     for current in article_list:
         if current.publish_time < detail.publish_time:
             break
@@ -22,13 +36,17 @@ def detail(request, article_id, category_type):
 
     category_list = Category.objects.filter(category_type__categoryType_name__exact = category_type).order_by('create_time')
     tag_list = Tag.objects.filter(category_type__categoryType_name__exact = category_type).order_by('create_time')
-    context = {'detail': detail,
+    context = { 
+                'category_name':category_name,
+                'tag_name':tag_name,
+                'category_type':category_type,
+                'detail': detail,
                 'next':next,
                 'previous':previous,
                 'category_list':category_list,
-               'tag_list':tag_list
+                'tag_list':tag_list
     }
-    return render(request, 'blog/article/detail.html', context)
+    return render(request, 'blog/article/article_detail.html', context)
 
 def article_list_by_category_type(request, category_type):
     article_list = Article.objects.filter(category__category_type__categoryType_name__exact = category_type).order_by('-publish_time')
@@ -45,9 +63,9 @@ def article_list_by_category_type(request, category_type):
         articles = paginator.page(paginator.num.pages)
     context = {
                 'category_type':category_type,
-               'articles':articles,
-               'category_list':category_list,
-               'tag_list':tag_list}
+                'articles':articles,
+                'category_list':category_list,
+                'tag_list':tag_list}
     return render(request, 'blog/article/article_list.html', context)
 
 def article_list_by_category_name(request, category_name, category_type):
@@ -65,14 +83,15 @@ def article_list_by_category_name(request, category_name, category_type):
         articles = paginator.page(paginator.num.pages)
     context = {
                 'category_type':category_type,
-               'articles':articles,
-               'category_list':category_list,
-               'tag_list':tag_list}
+                'category_name':category_name,
+                'articles':articles,
+                'category_list':category_list,
+                'tag_list':tag_list}
     return render(request, 'blog/article/article_list.html', context)
 
 def article_list_by_tag_name(request, tag_name, category_type):
     tag = Tag.objects.get(tag_name__exact = tag_name)
-    article_list = tag.article_set.all().filter(category__category_type__categoryType_name__exact = category_type).order_by('publish_time')
+    article_list = tag.article_set.all().filter(category__category_type__categoryType_name__exact = category_type).order_by('-publish_time')
     category_list = Category.objects.filter(category_type__categoryType_name__exact = category_type).order_by('create_time')
     tag_list = Tag.objects.filter(category_type__categoryType_name__exact = category_type).order_by('create_time')
 
@@ -86,7 +105,8 @@ def article_list_by_tag_name(request, tag_name, category_type):
         articles = paginator.page(paginator.num.pages)
     context = {
                 'category_type':category_type,
-               'articles':articles,
-               'category_list':category_list,
-               'tag_list':tag_list}
+                'tag_name':tag_name,
+                'articles':articles,
+                'category_list':category_list,
+                'tag_list':tag_list}
     return render(request, 'blog/article/article_list.html', context)

@@ -1,0 +1,41 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    {{ category_type }}--吊儿郎当小阿衰
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <ol id="article-base-nav-path" class="breadcrumb">
+            <li><a href="/blog/home">home</a></li>
+            <li ><a href="/blog/{{ category_type }}/list/">{{ category_type }}</a></li>
+            {% if tag_name %}
+            <li><span  class="label label-primary">标签：{{ tag_name }}</span></li>
+            {% endif %}
+            {% if category_name %}
+            <li><span  class="label label-warning">类别：{{ category_name }}</span></li>
+            {% endif %}
+        </ol>
+        {% block article_container %}{% endblock %}
+    </div>
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="/blog/{{ category_type }}/list/" class="btn btn-active btn-inverse" style="width:100%">ALL</a>
+            {% for category in category_list %}   
+            <a href="/blog/{{ category_type }}/list/category={{ category.category_name }}" class="list-group-item  palette palette-silver">{{ category.category_name }}</a>
+            {% endfor%}
+        </div>
+        <hr/>
+        <div>
+            <p>
+            {% for tag in tag_list %}
+            <span class="label label-primary"><a href="/blog/{{ category_type }}/list/tag={{ tag.tag_name }}">{{ tag.tag_name }}</a></span>
+            {% endfor %}
+            </p>
+        </div>
+        <hr/>
+        <iframe width="100%" height="80" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1944495783&verifier=c39dc63c&colors=d6f3f7,CCC,666666,0082cb,ecfbfd&dpc=1"></iframe>
+        <hr/>
+    </div>
+</div>
+{% endblock %}

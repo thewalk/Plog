@@ -6,7 +6,7 @@
     <title>
         {% block title %}{% endblock %}        
     </title>
-    
+
     <!--新浪围脖-->
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 
@@ -17,16 +17,20 @@
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="/static/jquery/jquery-1.11.1.js"></script>
+
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/stickUp-master/stickUp.min.js"></script>
+    
+    <script src="/static/mine/js/mine.js"></script>
 </head>
 
-<body>
+<body style="background-color:#34495e">
     <nav class="navbar navbar-inverse navbar-static-top" id="base-nav" role="navigation">
         <div id="base-nav-portrait-and-motto">
-            <div id="base-nav-portrait"><a href="#"><img id="base-nav-pic" alt="Brand" src="/static/pic/portrait.jpeg"></a></div>
+            <div id="base-nav-portrait" onclick="runpic(this)"><a href="#"><img id="base-nav-pic" alt="Brand" src="/static/pic/portrait1.jpeg"></a></div>
             <div id="base-nav-motto"><font id="base-nav-motto-font">Do&nbsp&nbspSomething&nbsp&nbspU&nbsp&nbspLike,<br/> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTry&nbsp&nbspSomething&nbsp&nbspU&nbsp&nbspWant!</font></div>
+            <div id="base-nav-portrait2"><img id="base-nav-pic" alt="Brand" src="/static/pic/portrait2.jpg"></div>
         </div>
 
         <div id="base-nav-bar">
@@ -40,9 +44,9 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-info" id="base-nav-bar-btn-font">没事搜一哈</button>
+                    <button type="submit" class="btn btn-info">没事搜一哈</button>
                 </form>
-                <ul class="nav navbar-nav navbar-right" id="base-nav-bar-link-font">
+                <ul class="nav navbar-nav navbar-right">
                     <li><a href="/blog/study/list">打虫子</a></li>
                     <li><a href="/blog/life/list">晒太阳</a></li>
                     <li><a href="#">书柜</a></li>
@@ -54,15 +58,13 @@
     </nav>
     <div class="palette palette-turquoise ">
     <div class = "container-fluid">
-    {% block container%}
+    {% block container %}
     {% endblock %}
     </div>
     </div>
-    <footer class="palette palette-wet-asphalt">
-        <p style="text-align:center">Powered&nbsp&nbspBy&nbsp&nbspDjango</p>
-        <P style="text-align:center">Contact&nbsp&nbspme&nbsp&nbspvia&nbsp&nbsp<span class="glyphicon glyphicon-envelope"></span><a href="mailto:thewalk_shuai@gmail.com">thewalk_shuai@gmail.com</a></p>
-        <wb:follow-button uid="1944495783" type="red_1" width="67" height="24" ></wb:follow-button>
+    <footer class="palette palette-wet-asphalt base-footer-text">
+        <p>Powered&nbsp&nbspBy&nbsp&nbspDjango</p>
+        <P>Contact&nbsp&nbspme&nbsp&nbspvia&nbsp&nbsp<span class="glyphicon glyphicon-envelope"></span><a href="mailto:thewalk_shuai@gmail.com">thewalk_shuai@gmail.com</a></p>
     </footer>
-
 </body>
 </html>

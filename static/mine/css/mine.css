@@ -1,29 +1,28 @@
+a{ color:#FFF; text-decoration:none;}
+a:hover{ color:#CCC; text-decoration:underline;}
 .bs-callout {
     padding: 20px;
     margin: 20px 0px;
-    border-width: 2px 2px 2px 10px;
+    border-width: 0px 0px 0px 10px;
     border-style: solid;
-    border-color: #BBB;
+    border-color: #DDD;
     -moz-border-top-colors: none;
     -moz-border-right-colors: none;
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: #1CC;
     border-image: none;
-    border-radius: 10px;
+    border-radius: 0px;
 }
-a{ color:#FFF; text-decoration:none;}
-a:hover{ color:#CCC; text-decoration:underline;}
-
+.base-footer-text{
+    text-align:center;
+}
 #base-nav{
     height:240px;
     margin:0 auto;
 }
 #base-nav-pic{
     border-radius:100px;
-    width:80%;
-}
-#base-nav-hr{
-    margin:0;
+    width:90%;
 }
 #base-nav-portrait-and-motto{
     height:180px;
@@ -34,6 +33,12 @@ a:hover{ color:#CCC; text-decoration:underline;}
 #base-nav-portrait{
     position:absolute;
     left:80px;
+    top:15px;
+    float:left;
+}
+#base-nav-portrait2{
+    position:absolute;
+    left:1060px;
     top:15px;
     float:left;
 }
@@ -53,10 +58,14 @@ a:hover{ color:#CCC; text-decoration:underline;}
     font-weight:bold;
     font-family:"Times New Roman",Georgia,Serif;
 }
-#base-nav-bar-link-font{
-    font-family:Georgia,Serif;
+
+
+.article-btn-font-disabled
+{
+    color:#34495e;
 }
-#base-nav-bar-btn-font{
-    font-weight:bold;
-    font-family:"Times New Roman",Georgia,Serif;
+#article-base-nav-path
+{
+    background-color:#34495e;
+    margin-bottom:2px;
 }
