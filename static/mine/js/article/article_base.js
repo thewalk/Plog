@@ -1,0 +1,99 @@
+$(document).ready(function(){
+    $("#article-base-path-link-type").text($("#base-container").attr('category_type'));
+    $("#article-base-category-type").text($("#base-container").attr('category_type'));
+    $.get("/blog/article_list/",
+            {category_type:$("#base-container").attr("category_type"),page:$("#base-container").attr("page")},
+            function(result){
+                $("#article-base-container").html(result);
+            }
+    );
+    $("#article-base-path-home").click(function(){
+        $("#base-container").slideUp();
+    });
+    $("#article-base-path-link-type").click(function(){
+        reset();
+        $("#base-container").hide();
+        $("#article-base-path-link-tag").html("");
+        $("#article-base-more").text("more");
+        htmlobj=$.get("/blog/article_list/",
+                        {category_type:$("#base-container").attr("category_type"),page:$("#base-container").attr("page")},
+                        function(result){
+                            $("#base-container").slideDown();
+                            $("#article-base-container").html(result);
+                        }
+        );
+    });
+    $("#article-base-category-type").click(function(){
+        reset();
+        $("#base-container").hide();
+        $("#article-base-path-link-tag").html("");
+        $("#article-base-more").text("more");
+        htmlobj=$.get("/blog/article_list/",
+                        {category_type:$("#base-container").attr('category_type'),page:$("#base-container").attr('page')},
+                        function(result){
+                            $("#base-container").slideDown();
+                            $("#article-base-container").html(result);
+                        }
+        );
+    });
+    $(".article-base-category-link").click(function(){
+        reset();
+        $("#base-container").hide();
+        $("#base-container").attr("category_id",$(this).attr('tag'));
+        $("#article-base-more").text("more");
+        type=$("#base-container").attr('category_type');
+        $("#article-base-path-link-tag").html("<span class='label label-warning' tag='"+$(this).text()+"'>类别："+$(this).text()+"</span>");
+        category=$(this).attr('tag');
+        htmlobj=$.get("/blog/article_list/",
+                        {category_type:type, category_id:category, page:$("#base-container").attr('page')},
+                        function(result){
+                            $("#article-base-container").html(result);
+                            $("#base-container").slideDown();
+                        }
+        );
+    });
+    $(".article-base-tag-link").click(function(){
+        reset();
+        $("#base-container").hide();
+        $("#base-container").attr("tag_id",$(this).attr('tag'));
+        $("#article-base-more").text("more");
+        type=$("#base-container").attr('category_type');
+        $("#article-base-path-link-tag").html("<span class='label label-primary' tag='"+$(this).text()+"'>标签："+$(this).text()+"</span>");
+        tag=$(this).attr('tag');
+        htmlobj=$.get("/blog/article_list/",
+                        {category_type:type,tag_id:tag, page:$("#base-container").attr('page')},
+                        function(result){
+                            $("#article-base-container").html(result);
+                            $("#base-container").slideDown();
+                        }
+        );
+    });
+    $("#article-base-more").click(function(){
+        if($("#base-container").attr("more_btn")==1){
+            type = $("#base-container").attr("category_type");
+            next_page = eval($("#base-container").attr("page")+"+1");
+            category = $("#base-container").attr("category_id");
+            tag = $("#base-container").attr("tag_id");
+            $("#base-container").attr("page",next_page);
+            htmlobj=$.ajax({
+                url:"/blog/article_list/",
+                data: {category_type:type,page:next_page,category_id:category,tag_id:tag},
+                success:function(result){
+                    $("#article-base-container").append(result);
+                    $("#base-container").slideDown();
+                },
+                error:function(result){$("#article-base-more").text("真滴木有了～")},
+            });
+        }
+        else if($("#base-container").attr("more_btn")==0){
+            alert($("#base-container").attr("article_id"));
+        }
+    });
+    function reset(){
+        $("#base-container").attr("page",1);
+        $("#base-container").attr("tag_id","");
+        $("#base-container").attr("category_id","");
+        $("#base-container").attr("more_btn",1);
+        $("#base-container").attr("article_id","");
+    }
+});

@@ -1,4 +1,4 @@
-a{ color:#FFF; text-decoration:none;}
+a{ color:#FFF; text-decoration:none;cursor:pointer;}
 a:hover{ color:#CCC; text-decoration:underline;}
 .bs-callout {
     padding: 20px;

@@ -1,47 +1,15 @@
-{% extends "blog/article/article_base.html" %}
-{% block article_container %}
+<script src="/static/mine/js/article/article_list.js"></script>
 {% autoescape off %}
-<div class="palette palette-green-sea">
-    {% for article in articles %}
-    <div class="bs-callout palette palette-turquoise ">
-        <p class="blog-title">
-            <h4><a href="/blog/{{ category_type }}/detail/article_id={{ article.id }}&category={{ category_name }}&tag={{ tag_name }}"><font id="article-list-title">{{ article.title }}</font></a></h4>
-        </p>
-        <p>
-            <font id="article-list-time"><span  class="glyphicon glyphicon-time"></span>&nbsp{{ article.update_time }}&nbsp&nbsp&nbsp&nbsp</font>
-            <font id="article-list-category"><span  class="glyphicon glyphicon-folder-open"></span>&nbsp{{ article.category }}</font>
-        </p>
-        <p><font id="article-list-description">{{ article.description }}</font></p>
-    </div>
-    {% endfor %}
-
-    <div class="pagination pagination-inverse">
-        {% if articles.has_previous %}
-        <a href="?page={{ articles.previous_page_number }}" class="btn btn-inverse previous">前一页</a>
-        {% else %}
-        <a class="btn btn-inverse disabled previous"><font class="article-btn-font-disabled">前面木有了</font></a>
-        {% endif %}
-        <script language="javascript" type="text/javascript">
-            document.write("<ul>");
-            var num_pages = {{ articles.paginator.num_pages }};
-            var number = {{ articles.number }};
-            var iter = {{ articles.number }} - 3;
-            var count = 0;
-            while(iter <= 0) iter++;
-            
-            for( ; count < num_pages && count<7 ; count++ )
-            {
-               document.write("<li><a href='?page=" + iter + "'>" + iter + "</a></li>");
-               iter++;
-            }
-            document.write("</ul>");
-        </script> 
-        {% if articles.has_next %}
-        <a href="?page={{ articles.next_page_number }}" class="btn btn-inverse next">后一页</a>
-        {% else %}
-        <a" class="btn btn-inverse disabled next"><font class="article-btn-font-disabled">后面木有了</font></a>
-        {% endif %}
-    </div>
+{% for article in articles %}
+<div class="bs-callout palette palette-turquoise btn-active btn-info">
+    <p class="blog-title">
+        <h4><a class="article-list-article-link" tag="{{ article.id }}"><font id="article-list-title">{{ article.title }}</font></a></h4>
+    </p>
+    <p>
+        <font id="article-list-time"><span class="glyphicon glyphicon-time"></span>&nbsp{{ article.update_time }}&nbsp&nbsp&nbsp&nbsp</font>
+        <font id="article-list-category"><span  class="glyphicon glyphicon-folder-open"></span>&nbsp{{ article.category }}</font>
+    </p>
+    <p><font id="article-list-description">{{ article.description }}</font></p>
 </div>
+{% endfor %}
 {% endautoescape %}
-{% endblock %}

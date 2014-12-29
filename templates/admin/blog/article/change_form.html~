@@ -1,0 +1,7 @@
+{% extends "admin/change_form.html" %}
+{% load blog_tags %}
+{% block after_field_sets%}
+{% if object_id %}
+{% display_category_tags object_id%}
+{% endif %}
+{% endblock %}

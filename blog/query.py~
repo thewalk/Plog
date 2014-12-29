@@ -1,0 +1,4 @@
+from models import Article,Category,Tag
+def some():
+	article_list = Article.objects.filter(category).order_by('-publish_time')
+

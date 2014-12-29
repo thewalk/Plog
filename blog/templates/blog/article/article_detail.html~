@@ -1,58 +1,56 @@
-{% extends "blog/article/article_base.html" %}
-{% block article_container %}
 {% autoescape off %}
-<div class="palette palette-green-sea">
-    <div>
-        <h4>{{ detail.title }}</h4>
-        <hr/>
-        <p><span class="glyphicon glyphicon-search"></span><font>{{ detail.description }}</font></p>
-        <hr/>
-    </div>
-    <div>
-        <p>{{ detail.content }}</p>
-    </div>
-    <div>
-        <hr/>
-        <p><span class="glyphicon glyphicon-folder-open"></span>&nbsp&nbsp{{detail.category}}</p>
-        <p>
-            <span class="glyphicon glyphicon-tags"></span>&nbsp&nbsp
-            {% for tag in detail.tags.all %}
-            <span class="label label-primary">{{ tag.tag_name }}</span>
-            {% endfor %}
-        </p>
-        <p><span class="glyphicon glyphicon-time"></span>&nbsp&nbsp{{detail.publish_time}}</p>
-        <hr/>
-        <div class="row" style="padding-left:20px">
-            {% if previous %}
-            <a href="/blog/{{ category_type }}/detail/article_id={{ previous.id }}&category={{ category_name }}&tag={{ tag_name }}">
-                <div class="col-md-5 btn btn-active btn-inverse">
-                    <span style="float:left"><<</span>{{ previous.title }}
-                </div>
-            </a>
-            {% else %}
-            <a class="article-btn-font-disabled">
-                <div class="col-md-5 btn disabled">
-                    <span style="float:left"><<</span>前面木有了
-                </div>
-            </a>
-            {% endif %}
-            <div class="col-md-1"></div>
-            {% if next %}
-            <a href="/blog/{{ category_type }}/detail/article_id={{ next.id }}">
-                <div class="col-md-5 btn btn-active btn-inverse">
-                    <span style="float:right">>></span>{{ next.title }}
-                </div>
-            </a>
-            {% else %}
-            <a class="article-btn-font-disabled">
-                <div class="col-md-5 btn disabled">
-                    <span style="float:right">>></span>后面木有了
-                </div>
-            </a>
-            {% endif %}
-            <div class="col-md-1"></div>
+<div>
+    <h4>{{ detail.title }}</h4>
+    <hr/>
+    <p><span class="glyphicon glyphicon-search"></span><font>{{ detail.description }}</font></p>
+    <hr/>
+</div>
+<div>
+    <p>{{ detail.content }}</p>
+</div>
+<div>
+    <hr/>
+    <p><span class="glyphicon glyphicon-folder-open"></span>&nbsp&nbsp{{detail.category}}</p>
+    <p>
+        <span class="glyphicon glyphicon-tags"></span>&nbsp&nbsp
+        {% for tag in detail.tags.all %}
+        <span class="label label-primary">{{ tag.tag_name }}</span>
+        {% endfor %}
+    </p>
+    <p><span class="glyphicon glyphicon-time"></span>&nbsp&nbsp{{detail.publish_time}}</p>
+    <hr/>
+    <div class="row" style="padding-left:20px">
+<!--        <a id="article-detail-previous" tag={{ previous.id }}>-->
+<!--            <div class="col-md-5 btn btn-active btn-inverse">-->
+<!--                <span style="float:left"><<</span>{{ previous.title }}-->
+<!--            </div>-->
+<!--        </a>-->
+<!--        <div class="col-md-1"></div>-->
+<!--        <a id="article-detail-next" tag={{ next.id }}>-->
+<!--            <div class="col-md-5 btn btn-active btn-inverse">-->
+<!--                <span style="float:right">>></span>{{ next.title }}-->
+<!--            </div>-->
+<!--        </a>-->
+        {% if previous %}
+        <div id="article-detail-previous" class="col-md-5 btn btn-active btn-inverse" tag={{ previous.id }}>
+            <span style="float:left"><<</span>{{ previous.title }}
         </div>
+        {% else %}
+        <div class="col-md-5 btn disabled">
+            <span style="float:left"><<</span>前面木有了
+        </div>
+        {% endif %}
+        <div class="col-md-1"></div>
+        {% if next %}
+        <div id="article-detail-next" class="col-md-5 btn btn-active btn-inverse" tag={{ next.id }}>
+            <span style="float:right">>></span>{{ next.title }}
+        </div>
+        {% else %}
+        <div class="col-md-5 btn disabled">
+            <span style="float:right">>></span>后面木有了
+        </div>
+        {% endif %}
+        <div class="col-md-1"></div>
     </div>
 </div>
 {% endautoescape %}
-{% endblock %}

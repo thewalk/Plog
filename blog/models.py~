@@ -38,7 +38,7 @@ class Article(models.Model):
     hit_num = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return u'%s %s' % (self.title, self.publish_time)
+        return u'%s %s ' % (self.title, self.publish_time)
 
 class Comment(models.Model):
     """Comment, comment of article"""

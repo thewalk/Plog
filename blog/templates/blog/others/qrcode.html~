@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+{% block title%}
+吊儿郎当小阿衰
+{% endblock %}
+{% block container %}
+<div style="text-align:center">
+<img class="btn btn-active btn-inverse" style="width:300px" src="/static/pic/qrcode.jpg"/>
+</div>
+{% endblock %}

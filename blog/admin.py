@@ -1,11 +1,11 @@
+from django import forms
 from django.contrib import admin
 from blog.models import Article, Tag, Comment, Category,CategoryType
 
 # Register your models here.
-
 class ArticleAdmin(admin.ModelAdmin):
     """docstring for BlogAdmin"""
-    list_display = ('title','description','category','content','publish_time','update_time','hit_num',)
+    list_display = ('title','description','category','publish_time','update_time','hit_num',)
     list_filter = ('publish_time',)
     ordering = ('-publish_time',)
     filter_horizontal = ('tags',)
@@ -23,8 +23,9 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category_name',)
 
 class CategoryTypeAdmin(admin.ModelAdmin):
-	"""docstring for CategoryAdmin"""
-	list_display = ('categoryType_name',)
+    """docstring for CategoryAdmin"""
+    list_display = ('categoryType_name',)
+
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Comment, CommentAdmin)

@@ -1,5 +1,28 @@
 $(document).ready(function(){
     $("#base-nav-portrait2").hide();
+    $("#base-container").hide();
+    $(".base-nav-bar-link").click(function(e){
+        $("#base-container").hide();
+        reset();
+        category_type = $(this).attr("tag");
+        htmlobj=$.get("/blog/article_base/",{'category_type':category_type},function(result){
+                $("#base-container").attr('category_type',category_type);
+                $("#base-container").attr('page',1);
+                $("#base-container").attr('more_btn',1);
+                $("#base-container").html(result);
+                $("#base-container").slideDown();
+        });
+    });
+    $("#base-nav-bar-name").click(function(){
+        $("#base-container").slideToggle();
+    });
+    function reset(){
+        $("#base-container").attr("page",1);
+        $("#base-container").attr("tag_id","");
+        $("#base-container").attr("category_id","");
+        $("#base-container").attr("more_btn",1);
+        $("#base-container").attr("article_id","");
+    }
 });
 
 var picObj;

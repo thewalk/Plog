@@ -1,14 +1,20 @@
+from django import forms
 from django.contrib import admin
-from blog.models import Article, Tag, Comment, Category
+from blog.models import Article, Tag, Comment, Category,CategoryType
 
 # Register your models here.
+class ArticleAdminForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.filter(category_type__categoryType_name=self),widget=forms.CheckboxSelectMultiple())
+    class Meta:
+        model = Article
 
 class ArticleAdmin(admin.ModelAdmin):
     """docstring for BlogAdmin"""
-    list_display = ('title','description','category','content','publish_time','update_time','hit_num',)
+    list_display = ('title','description','category','publish_time','update_time','hit_num',)
     list_filter = ('publish_time',)
     ordering = ('-publish_time',)
     filter_horizontal = ('tags',)
+    form = ArticleAdminForm
 
 class CommentAdmin(admin.ModelAdmin):
     """docstring for CommentAdmin"""
@@ -23,8 +29,9 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category_name',)
 
 class CategoryTypeAdmin(admin.ModelAdmin):
-	"""docstring for CategoryAdmin"""
-	list_display = ('categoryType_name',)
+    """docstring for CategoryAdmin"""
+    list_display = ('categoryType_name',)
+
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Comment, CommentAdmin)

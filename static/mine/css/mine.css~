@@ -1,4 +1,4 @@
-a{ color:#FFF; text-decoration:none;}
+a{ color:#FFF; text-decoration:none;cursor:pointer;}
 a:hover{ color:#CCC; text-decoration:underline;}
 .bs-callout {
     padding: 20px;
@@ -9,7 +9,7 @@ a:hover{ color:#CCC; text-decoration:underline;}
     -moz-border-top-colors: none;
     -moz-border-right-colors: none;
     -moz-border-bottom-colors: none;
-    -moz-border-left-colors: #1CC;
+    -moz-border-left-colors: #CC;
     border-image: none;
     border-radius: 0px;
 }
@@ -66,4 +66,6 @@ a:hover{ color:#CCC; text-decoration:underline;}
 }
 #article-base-nav-path
 {
+    background-color:#34495e;
+    margin-bottom:2px;
 }

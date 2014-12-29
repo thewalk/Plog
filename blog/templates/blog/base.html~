@@ -22,21 +22,21 @@
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/stickUp-master/stickUp.min.js"></script>
     
-    <script src="/static/mine/js/mine.js"></script>
+    <script src="/static/mine/js/base.js"></script>
 </head>
 
-<body style="background-color:#34495e">
+<body class="palette palette-wet-asphalt">
     <nav class="navbar navbar-inverse navbar-static-top" id="base-nav" role="navigation">
         <div id="base-nav-portrait-and-motto">
             <div id="base-nav-portrait" onclick="runpic(this)"><a href="#"><img id="base-nav-pic" alt="Brand" src="/static/pic/portrait1.jpeg"></a></div>
             <div id="base-nav-motto"><font id="base-nav-motto-font">Do&nbsp&nbspSomething&nbsp&nbspU&nbsp&nbspLike,<br/> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTry&nbsp&nbspSomething&nbsp&nbspU&nbsp&nbspWant!</font></div>
-            <div id="base-nav-portrait2"><img id="base-nav-pic" alt="Brand" src="/static/pic/portrait2.jpg"></div>
+            <div id="base-nav-portrait2"><a href="http://weibo.com/1729310710" target="_blank"><img id="base-nav-pic" alt="Brand" src="/static/pic/portrait2.jpg"></a></div>
         </div>
 
         <div id="base-nav-bar">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" id="base-nav-bar-name-font" href="#">吊儿郎当小阿衰</a>
+                <a class="navbar-brand" id="base-nav-bar-name">吊儿郎当小阿衰</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse">
@@ -47,24 +47,26 @@
                     <button type="submit" class="btn btn-info">没事搜一哈</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/blog/study/list">打虫子</a></li>
-                    <li><a href="/blog/life/list">晒太阳</a></li>
-                    <li><a href="#">书柜</a></li>
-                    <li><a href="#">地图</a></li>
-                    <li><a href="#">客套话</a></li>
+                    <li><a class="base-nav-bar-link" tag="study">打虫子</a></li>
+                    <li><a class="base-nav-bar-link" tag="life">晒太阳</a></li>
+                    <li><a href="#" tag="book">书柜</a></li>
+                    <li><a href="#" tag="tourism">地图</a></li>
+                    <li><a href="#" tag="resume">客套话</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
     </nav>
-    <div class="palette palette-turquoise ">
-    <div class = "container-fluid">
-    {% block container %}
-    {% endblock %}
-    </div>
+    <div class="palette palette-turquoise " id="base-container" category_type=''>
+
     </div>
     <footer class="palette palette-wet-asphalt base-footer-text">
-        <p>Powered&nbsp&nbspBy&nbsp&nbspDjango</p>
-        <P>Contact&nbsp&nbspme&nbsp&nbspvia&nbsp&nbsp<span class="glyphicon glyphicon-envelope"></span><a href="mailto:thewalk_shuai@gmail.com">thewalk_shuai@gmail.com</a></p>
+        <a href="https://github.com/thewalk/" target="_blank"><img class="btn btn-active btn-inverse" src="/static/pic/github.png"  style="margin-bottom:20px"/></a>
+        <a href="http://weibo.com/1944495783" target="_blank"><img class="btn btn-active btn-inverse" src="/static/pic/weibo.png" style="margin-left:70px;margin-bottom:20px"/></a>
+        <a href="/blog/qrcode" target="_blank"><img class="btn btn-active btn-inverse" src="/static/pic/wechat.png" style="margin-left:70px;margin-bottom:20px"/></a>
+        <a href="mailto:thewalk_shuai@gmail.com" target="_blank"><img class="btn btn-active btn-inverse" src="/static/pic/mail.png" style="margin-left:70px;margin-bottom:20px"/></a>
+        <p>Powered&nbsp&nbspBy&nbsp&nbsp<a href="www.djangoproject.org" target="_blank">Django</a></p>
+        <p>Decrated&nbsp&nbspBy&nbsp&nbsp<a href="http://www.bootcss.com/" target="_blank">Bootstrap</a>&nbsp&&nbsp<a href="www.bootcss.com/p/flat-ui/" target="_blank">FlatUI</a></p>
+        <P>Created&nbsp&nbspBy&nbsp<a href="">吊儿郎当小阿衰</a></p>
     </footer>
 </body>
 </html>
