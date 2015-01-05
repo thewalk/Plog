@@ -2,34 +2,37 @@
 <div class = "container-fluid">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <ol id="article-base-nav-path" class="breadcrumb">
                 <li><span class="glyphicon glyphicon-home"></span>&nbsp<a id="article-base-path-home">home</a></li>
                 <li><a id="article-base-path-link-type"></a></li>
                 <li id="article-base-path-link-tag"></li>
             </ol>
-            <div id="article-base-container" class="palette palette-green-sea">
+            <div id="article-base-container">
             </div>
-            <div id="article-base-more" class="btn btn-active btn-info" style="width:100%">more</div>
+            <div id="article-base-comment">
+            </div>
+            <div id="article-base-more" class="btn btn-info" style="width:100%">more</div>
         </div>
         <div class="col-md-3">
             <div class="list-group">
-                <a id="article-base-category-type" class="btn btn-active btn-inverse" style="width:100%"></a>
+                <a id="article-base-category-type" class="btn btn-info" style="width:100%"></a>
                 {% for category in category_list %}
-                <a class="article-base-category-link list-group-item  palette palette-silver" tag={{ category.id }}>{{ category.category_name }}</a>
+                <a class="article-base-category-link list-group-item" tag={{ category.id }}>{{ category.category_name }}</a>
                 {% endfor%}
             </div>
             <hr/>
             <div>
                 <p>
                 {% for tag in tag_list %}
-                <span class="label label-primary"><a class="article-base-tag-link" tag={{ tag.id }}>{{ tag.tag_name }}</a></span>
+                <span class="label label-info"><a class="article-base-tag-link" tag={{ tag.id }}>{{ tag.tag_name }}</a></span>
                 {% endfor %}
                 </p>
             </div>
             <hr/>
-            <iframe width="100%" height="80" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1944495783&verifier=c39dc63c&colors=d6f3f7,CCC,666666,0082cb,ecfbfd&dpc=1"></iframe>
+            <iframe width="100%" height="350" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=350&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=0&isWeibo=1&isFans=0&uid=1944495783&verifier=c39dc63c&dpc=1"></iframe>
             <hr/>
         </div>
+        <div class="col-md-1"></div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <script src="/static/mine/js/article/article_list.js"></script>
 {% autoescape off %}
 {% for article in articles %}
-<div class="bs-callout palette palette-turquoise btn-active btn-default">
+<div class="bs-callout palette palette-turquoise btn-active btn-info">
     <p class="blog-title">
         <h4><a class="article-list-article-link" tag="{{ article.id }}"><font id="article-list-title">{{ article.title }}</font></a></h4>
     </p>

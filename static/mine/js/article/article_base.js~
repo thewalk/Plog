@@ -69,6 +69,7 @@ $(document).ready(function(){
         );
     });
     $("#article-base-more").click(function(){
+//        article list
         if($("#base-container").attr("more_btn")==1){
             type = $("#base-container").attr("category_type");
             next_page = eval($("#base-container").attr("page")+"+1");
@@ -85,8 +86,21 @@ $(document).ready(function(){
                 error:function(result){$("#article-base-more").text("真滴木有了～")},
             });
         }
+//        article detail
         else if($("#base-container").attr("more_btn")==0){
-            alert($("#base-container").attr("article_id"));
+            $("#article-base-more").text("刷新评论！")；
+            article_id = $("#base-container").attr('article_id');
+            htmlobj=$.ajax({
+                url:"/blog/comment_list/",
+                data: {'article_id':article_id},
+                success:function(result){
+                    $("#article-base-comment").html(result);
+                },
+                error:function(result){$("#article-base-more").text("真滴木有了～")},
+            });
+        }
+//        article comment
+        else{
         }
     });
     function reset(){
@@ -94,6 +108,8 @@ $(document).ready(function(){
         $("#base-container").attr("tag_id","");
         $("#base-container").attr("category_id","");
         $("#base-container").attr("more_btn",1);
-        $("#base-container").attr("article_id",0);
+        $("#base-container").attr("article_id","");
+        $("#article-base-comment").html("");
     }
 });
+

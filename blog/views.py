@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from blog.models import Article,Category,Tag
+from django.http import HttpResponse
+from blog.models import Article,Category,Tag,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 # Create your views here.
 
@@ -115,7 +116,6 @@ def query_article_list_by_category_id(category_id, page):
 
 def query_article_list_by_tag_id(tag_id, page):
     tag = Tag.objects.get(pk = tag_id)
-    tag = Tag.objects.get(id__exact = tag_id)
     article_list = tag.article_set.all().order_by('-publish_time')
     paginator = Paginator(article_list,6)
     try:
@@ -127,3 +127,26 @@ def query_article_list_by_tag_id(tag_id, page):
     context = {'articles':articles,
     }
     return context
+
+def comment_list(request):
+    article_id = request.GET.get('article_id')
+    context = query_comment_list_by_article_id(article_id)
+    return render(request,"blog/comment/comment_list.html",context)
+
+def query_comment_list_by_article_id(article_id):
+    comment_list = Comment.objects.filter(article_id = article_id)
+    context = {'comment_list':comment_list,}
+    return context
+
+def comment_submit(request):
+    error = False
+    if not request.POST.get('article_id','') or not request.POST.get('critic_name','') or not request.POST.get('email','') and'@' not in request.POST.get('email') or not request.POST.get('content',''):
+        error = True
+    else:
+        article_id_in = request.POST.get('article_id')
+        critic_name_in = request.POST.get('critic_name')
+        email_in = request.POST.get('email')
+        content_in = request.POST.get('content')
+        new_comment = Comment(critic_name=critic_name_in,article_id=article_id_in,email=email_in,content=content_in)
+        new_comment.save();
+    return render(request,"blog/comment/comment_result.html",{'error':error})

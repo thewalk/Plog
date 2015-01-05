@@ -1,56 +1,48 @@
+<script src="/static/mine/js/article/article_detail.js"></script>
 {% autoescape off %}
-<div>
-    <h4>{{ detail.title }}</h4>
-    <hr/>
-    <p><span class="glyphicon glyphicon-search"></span><font>{{ detail.description }}</font></p>
-    <hr/>
-</div>
-<div>
-    <p>{{ detail.content }}</p>
-</div>
-<div>
-    <hr/>
-    <p><span class="glyphicon glyphicon-folder-open"></span>&nbsp&nbsp{{detail.category}}</p>
-    <p>
-        <span class="glyphicon glyphicon-tags"></span>&nbsp&nbsp
-        {% for tag in detail.tags.all %}
-        <span class="label label-primary">{{ tag.tag_name }}</span>
-        {% endfor %}
-    </p>
-    <p><span class="glyphicon glyphicon-time"></span>&nbsp&nbsp{{detail.publish_time}}</p>
-    <hr/>
-    <div class="row" style="padding-left:20px">
-<!--        <a id="article-detail-previous" tag={{ previous.id }}>-->
-<!--            <div class="col-md-5 btn btn-active btn-inverse">-->
-<!--                <span style="float:left"><<</span>{{ previous.title }}-->
-<!--            </div>-->
-<!--        </a>-->
-<!--        <div class="col-md-1"></div>-->
-<!--        <a id="article-detail-next" tag={{ next.id }}>-->
-<!--            <div class="col-md-5 btn btn-active btn-inverse">-->
-<!--                <span style="float:right">>></span>{{ next.title }}-->
-<!--            </div>-->
-<!--        </a>-->
-        {% if previous %}
-        <div id="article-detail-previous" class="col-md-5 btn btn-active btn-inverse" tag={{ previous.id }}>
-            <span style="float:left"><<</span>{{ previous.title }}
+<div class="bs-callout">
+    <div>
+        <h4><span class="glyphicon glyphicon-paperclip"></span>&nbsp&nbsp{{ detail.title }}</h4>
+        <hr/>
+        <p><span class="glyphicon glyphicon-search"></span>&nbsp&nbsp&nbsp{{ detail.description }}</p>
+        <hr/>
+    </div>
+    <div>
+        <p>{{ detail.content }}</p>
+    </div>
+    <div>
+        <hr/>
+        <p><span class="glyphicon glyphicon-folder-open"></span>&nbsp&nbsp&nbsp{{detail.category}}</p>
+        <p>
+            <span class="glyphicon glyphicon-tags"></span>&nbsp&nbsp&nbsp
+            {% for tag in detail.tags.all %}
+            <span class="label label-info">{{ tag.tag_name }}</span>
+            {% endfor %}
+        </p>
+        <p><span class="glyphicon glyphicon-time"></span>&nbsp&nbsp&nbsp{{detail.publish_time}}</p>
+        <hr/>
+        <div class="row" style="padding-left:20px">
+            {% if previous %}
+            <div id="article-detail-previous" class="col-md-5 btn" tag={{ previous.id }} style="background-color:#dddddd">
+                <span style="float:left"><<</span>{{ previous.title }}
+            </div>
+            {% else %}
+            <div class="col-md-5 btn disabled">
+                <span style="float:left"><<</span>前面木有了
+            </div>
+            {% endif %}
+            <div class="col-md-1"></div>
+            {% if next %}
+            <div id="article-detail-next" class="col-md-5 btn " tag={{ next.id }} style="background-color:#dddddd">
+                <span style="float:right">>></span>{{ next.title }}
+            </div>
+            {% else %}
+            <div class="col-md-5 btn disabled">
+                <span style="float:right">>></span>后面木有了
+            </div>
+            {% endif %}
+            <div class="col-md-1"></div>
         </div>
-        {% else %}
-        <div class="col-md-5 btn disabled">
-            <span style="float:left"><<</span>前面木有了
-        </div>
-        {% endif %}
-        <div class="col-md-1"></div>
-        {% if next %}
-        <div id="article-detail-next" class="col-md-5 btn btn-active btn-inverse" tag={{ next.id }}>
-            <span style="float:right">>></span>{{ next.title }}
-        </div>
-        {% else %}
-        <div class="col-md-5 btn disabled">
-            <span style="float:right">>></span>后面木有了
-        </div>
-        {% endif %}
-        <div class="col-md-1"></div>
     </div>
 </div>
 {% endautoescape %}

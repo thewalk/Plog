@@ -1,26 +1,41 @@
-a{ color:#FFF; text-decoration:none;cursor:pointer;}
-a:hover{ color:#CCC; text-decoration:underline;}
+/*global*/
+a{
+    cursor:pointer;
+}
 .bs-callout {
-    padding: 20px;
+    padding: 15px;
     margin: 20px 0px;
-    border-width: 0px 0px 0px 10px;
+    border-width: 1px 1px 1px 10px;
     border-style: solid;
     border-color: #DDD;
     -moz-border-top-colors: none;
     -moz-border-right-colors: none;
     -moz-border-bottom-colors: none;
-    -moz-border-left-colors: #CC;
+    -moz-border-left-colors: #1CC;
     border-image: none;
-    border-radius: 0px;
+    border-radius: 2px;
 }
-.base-footer-text{
-    text-align:center;
+/*base*/
+body{
+    background-color:#333444;
+}
+#base-nav-bar a,
+.footer a{
+    color:#fff;
+    text-decoration:none;
+    cursor:pointer;
+}
+#base-nav-bar a:hover,
+.footer a:hover{
+    color:#000;
+    text-decoration:underline;
 }
 #base-nav{
     height:240px;
     margin:0 auto;
+    background-color:#333444;
 }
-#base-nav-pic{
+.base-nav-pic{
     border-radius:100px;
     width:90%;
 }
@@ -44,28 +59,56 @@ a:hover{ color:#CCC; text-decoration:underline;}
 }
 #base-nav-motto{
     position:absolute;
-    left:280px;
-    top:40px;
+    left:320px;
+    top:60px;
     float:left;
 }
 #base-nav-motto-font{
     font-size:200%;
     font-weight:bold;
     font-family:"Times New Roman",Georgia,Serif;
-    color:#CCC;
+    color:#DDDDDD;
 }
-#base-nav-bar-name-font{
-    font-weight:bold;
-    font-family:"Times New Roman",Georgia,Serif;
+#base-nav-bar-name{
+    margin-left:30px;
+}
+#base-container{
+    background-color:#FFF;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.base-footer-text{
+    text-align:center;
+    color:#000;
+}
+.base-footer-btn{
+  color: #fff;
+}
+.base-footer-btn:hover,
+.base-footer-btn:focus,
+.base-footer-btn:active{
+  color: #fff;
+  background-color: #3071a9;
+  border-color: #285e8e;
 }
 
-
+/*article-base*/
 .article-btn-font-disabled
 {
     color:#34495e;
 }
 #article-base-nav-path
 {
-    background-color:#34495e;
-    margin-bottom:2px;
+    padding: 8px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-color: #DDD;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-radius: 2px;
+    background-color:#fff;
+    margin-bottom:5px;
 }

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#article-detail-previous").click(function(){
+        $("#article-base-comment").html("");
         article_id = $("#article-detail-previous").attr("tag");
         category_id = $("#base-container").attr("category_id");
         tag_id = $("#base-container").attr("tag_id");
@@ -16,6 +17,7 @@ $(document).ready(function(){
         );
     });
     $("#article-detail-next").click(function(){
+        $("#article-base-comment").html("");
         article_id = $("#article-detail-next").attr("tag");
         category_id = $("#base-container").attr("category_id");
         tag_id = $("#base-container").attr("tag_id");

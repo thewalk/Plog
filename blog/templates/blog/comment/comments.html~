@@ -1,0 +1,9 @@
+<div>
+    {% for i,comment in comment_list %}
+    <div>
+        <p>{{ comment.critic_name }}</p>
+        <p>{{ comment.content }}</p>
+        <]>{{ comment.create_time}}</p>
+    </div>
+    {% endfor %}
+</div>

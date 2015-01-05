@@ -1,0 +1,1 @@
+<script>alert('评论成功！');location.href='/blog/home/'</script>

@@ -19,7 +19,7 @@ class Category(models.Model):
         return u'%s' %(self.category_name)
 
 class CategoryType(models.Model):
-    """Category's subclass"""
+    """Category's supclass"""
     categoryType_name = models.CharField(max_length=20)
     create_time = models.DateTimeField(auto_now_add=True)
 

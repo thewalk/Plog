@@ -1,0 +1,30 @@
+<script src="/static/mine/js/comment/comment_list.js"></script>
+{% autoescape off %}
+<div class="bs-callout">
+{% for comment in comment_list %}
+    <p><span class="glyphicon glyphicon-user"></span>&nbsp&nbsp&nbsp{{ comment.critic_name }}</p>
+    <p><span class="glyphicon glyphicon-comment"></span>&nbsp&nbsp&nbsp{{ comment.content }}</p>
+    <p><span class="glyphicon glyphicon-time"></span>&nbsp&nbsp&nbsp{{ comment.create_time}}</p>
+    <hr>
+{% endfor %}
+<hr>
+<h4><span class="glyphicon glyphicon-leaf"></span>&nbsp&nbsp&nbsp快来评论本渣吧～～</h4>
+<form action="/blog/comment_submit/" onsubmit="return validate_form(this);" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="article_id" id="comment_list_article_id">
+    <div class="input-group" style="margin-bottom:10px;width:50%">
+          <span class="input-group-addon">昵称</span>
+          <input class="form-control" placeholder="留下你的大名，小名不要" type="text" name="critic_name">
+     </div>
+     <div class="input-group" style="margin-bottom:10px;width:50%">
+          <span class="input-group-addon">邮箱</span>
+          <input class="form-control" placeholder="E-Mail，对，我不会暴露你的" type="text" name="email">
+     </div>
+     <div class="input-group" style="margin-bottom:20px">
+          <span class="input-group-addon">评论</span>
+          <textarea class="form-control" placeholder="学霸，快来评论本渣吧" type="text" name="content"></textarea>
+     </div>
+     <input id="comment_list_comment_submit" class="btn btn-info" type = "submit" value="提交">
+</form>
+</div>
+{% endautoescape %}
